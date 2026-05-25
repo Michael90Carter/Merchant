@@ -61,7 +61,7 @@ export function useWithdrawals(merchantId:string|null){
       s => setWithdrawals(s.docs.map(d=>({id:d.id,...d.data()})))
     );
   },[merchantId]);
-  return {withdrawals};
+  return {withdrawals, wds:withdrawals};
 }
 export async function requestWithdrawal(params:any){
   return addDoc(collection(db,"withdrawals"),{...params,status:"pending",requestedAt:serverTimestamp()});
@@ -189,6 +189,7 @@ export function useMerchantChatRoom(merchantId:string|null){
   },[merchantId]);
   return {room};
 }
+
 export function useChatMessages(roomId:string|null){
   const [msgs,setMsgs] = useState<any[]>([]);
   useEffect(()=>{
@@ -200,6 +201,7 @@ export function useChatMessages(roomId:string|null){
   },[roomId]);
   return {msgs};
 }
+
 export async function sendMerchantMessage(roomId:string, text:string, merchantId:string, merchantName:string){
   await addDoc(collection(db,"chat_rooms",roomId,"messages"),{
     senderId:merchantId, senderRole:"merchant", senderName:merchantName,
