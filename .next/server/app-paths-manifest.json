@@ -1,0 +1,6 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/merchant/chat/page": "app/merchant/chat/page.js",
+  "/merchant/products/page": "app/merchant/products/page.js",
+  "/merchant/dashboard/page": "app/merchant/dashboard/page.js"
+}
